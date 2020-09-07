@@ -1,0 +1,27 @@
+# vim: sw=2
+name: Dick
+
+on:
+  push:
+    branches:
+    - repack
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '14'
+
+    - run: sudo apt install unar -y
+    - run: ./get.mjs test
+
+    - uses: actions/upload-artifact@v2
+      with:
+        path: ./test/*
