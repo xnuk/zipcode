@@ -2,9 +2,7 @@
 name: Dick
 
 on:
-  push:
-    branches:
-    - repack
+  - workflow_dispatch
 
 jobs:
   build:
